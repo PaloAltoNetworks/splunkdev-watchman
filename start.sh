@@ -26,7 +26,7 @@ while [ "$WATCH_DIRS" ] ; do
     while [ "$SPLUNK_SERVERS_COPY" ] ; do
         server=${SPLUNK_SERVERS_COPY%%,*}
         echo "Adding trigger for Splunk server: $server"
-        watchman -- trigger "$dir" "reload-$server" '*.conf' '*.xml' '*.py' '*.txt' -- /bin/sh /usr/local/bin/reload-apps.sh "$server"
+        watchman -- trigger "$dir" "reload-$server" '**/*.conf' '**/*.xml' '**/*.py' '**/*.txt' -- /bin/sh /usr/local/bin/reload-apps.sh "$server"
         [ "$SPLUNK_SERVERS_COPY" = "$server" ] && \
             SPLUNK_SERVERS_COPY='' || \
             SPLUNK_SERVERS_COPY="${SPLUNK_SERVERS_COPY#*,}"

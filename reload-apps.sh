@@ -7,4 +7,6 @@ fi
 
 echo "Reloading Splunk server: $1"
 
-curl -k -Ss -u admin:"$SPLUNK_PASSWORD" "https://${1}:8089/services/apps/local/_reload"
+curl -k -Ss -u admin:"$SPLUNK_PASSWORD" "https://${1}:8089/services/apps/local/_reload" > /dev/null
+curl -k -Ss -u admin:"$SPLUNK_PASSWORD" "https://${1}:8089/services/data/ui/nav/_reload" > /dev/null
+curl -k -Ss -u admin:"$SPLUNK_PASSWORD" "https://${1}:8089/services/data/ui/views/_reload" > /dev/null
